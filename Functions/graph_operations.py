@@ -1,54 +1,50 @@
 # -*- coding: utf-8 -*-
 
+# shows edges not in tree
 def incident_edges(G, T):
     edges = []
     for e in G[1]:
-        for v in T[0]:
-            #doesn't consider edges already seen
-            if v in e and e not in T[1]:
-                
-                # if v in e and e not in T[0] ??
-                edges.append(e)
-        #remove edges that make cycles
-        
+        for vertex_a in T[0]:
+            for vertex_b in T[0]:
+                #considers edges already seen
+                if (vertex_a in e) and (e not in T[1]) and (e not in edges):
+                            edges.append(e)
     return edges
 
+
+# returns cost of edges 
 def cost(G, e):
-    return G[1][e]
+ return G[1][e]
+
+def initialize_tree(v):
+    return (([v], []))
 
 
-# add a min_cost_incident_edge(G, T)
-    # find the minimum of a list
-    # return minimum edge
+
+ # find the minimum edge of a list
+ # return minimum edge
     
 def min_cost_incident_edge(G, T):
-    edges = incident_edges
+    edges = incident_edges(G, T)
     min_e = edges[0]
     
-    for i in range(1, len(edges)):
-        
-        return min_e
-    
+    for e in edges:
+        if cost(G, e) < cost(G, min_e):
+            min_e = e
+      
+    return min_e
+
 # graph_cost returns the total weight of a graph
 # sum of edges
-        
-def graph_cost(G, e):
-    weight = [] 
-    for n in range(len(G[2])):
-        weight.add(G[2])
-        n -=1
+
+def graph_cost(G):
+    weight = 0
+    for c in G[1]:
+        weight += cost(G, c)
         
     return weight
     
     
-    # add each edge until there are no more edges
-    # for i in range(len(G[2])):
+# add each edge until there are no more edges
         
-        
-    
-    
-    
-    
-    
-def initialize_tree(v):
-    return (([v], []))
+ 
